@@ -1,0 +1,79 @@
+{
+  "resourceType": "Library",
+  "id": "pregnancy-lens-001",
+  "meta": {
+    "profile": [
+      "https://build.fhir.org/ig/hl7-eu/gravitate-health/StructureDefinition/Lens"
+    ]
+  },
+  "extension": [
+    {
+      "url": "https://build.fhir.org/ig/hl7-eu/gravitate-health/StructureDefinition/lens-type",
+      "valueString": "pregnancy"
+    }
+  ],
+  "url": "http://hl7.eu/fhir/ig/gravitate-health/Library/pregnancy-lens",
+  "identifier": [
+    {
+      "system": "http://hl7.eu/fhir/ig/gravitate-health/lens",
+      "value": "pregnancy-lens"
+    }
+  ],
+  "version": "1.0.0",
+  "name": "pregnancy-lens",
+  "title": "Pregnancy Lens",
+  "status": "active",
+  "experimental": false,
+  "type": {
+    "coding": [
+      {
+        "system": "http://terminology.hl7.org/CodeSystem/library-type",
+        "code": "logic-library",
+        "display": "Logic Library"
+      }
+    ]
+  },
+  "date": "2024-06-12T12:23:10.005Z",
+  "publisher": "Gravitate Health Project - UPM Team",
+  "contact": [
+    {
+      "telecom": [
+        {
+          "system": "email",
+          "value": "contact@gravitatehealth.eu"
+        }
+      ]
+    }
+  ],
+  "description": "Lens that highlights or collapses pregnancy-related information in ePI documents",
+  "jurisdiction": [
+    {
+      "coding": [
+        {
+          "system": "http://unstats.un.org/unsd/methods/m49/m49.htm",
+          "code": "EU",
+          "display": "European Union"
+        }
+      ]
+    }
+  ],
+  "purpose": "To focus ePI documents on pregnancy-related information for healthcare providers",
+  "usage": "Import this lens to your FHIR Server supporting the Library Resource type",
+  "copyright": "© 2024 Gravitate Health",
+  "parameter": [
+    {
+      "name": "pregnancy-status",
+      "use": "in",
+      "type": "boolean",
+      "documentation": "Indicates if patient is pregnant"
+    }
+  ],
+  "content": [
+    {
+      "type": "text/cql",
+      "language": "text/cql",
+      "title": "Pregnancy Information Filter",
+      "data": "ZGVmaW5lIGxpYnJhcnkgUHJlZ25hbmN5SW5mb3JtYXRpb24gdmVyc2lvbiAnMS4wLjAnCgppbmNsdWRlIEZISVJIZWxwZXJzIHZlcnNpb24gJzQuMC4wJwoKY29udGV4dCBQYXRpZW50CgpkZWZpbmUgSXNQcmVnbmFudDoKICBleGlzdHMgKFBhdGllbnQuY29udHJhY2VwdGlvbiBDIG1vZGlmaWVkVmlhIEFjdGl2aXR5LnBlcmlvZCkKICAgIHdoZXJlIEMuY29kZSB+IENvZGUgJ2dyYXZpZGFydW0nCiAgICBhbmQgQ28uaXNOdWxsKCkgaXMgZmFsc2UKCmRlZmluZSBQcmVnbmFuY3lJbmZvcm1hdGlvbjoKICBmaWx0ZXIgSXNQcmVnbmFudCB3aGVyZSB0aXRsZSBjb250YWlucyAnUHJlZ25hbmN5Jw=="
+    }
+  ]
+}
