@@ -11,7 +11,9 @@ router.get('/', (req, res, next) => {
   try {
     const lensNames = getLensNames(req.app.locals.lenses);
 
-    res.status(200).json(lensNames);
+    res.status(200).json({
+      lenses: lensNames
+    });
   } catch (error) {
     next(error);
   }

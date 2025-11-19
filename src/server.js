@@ -1,7 +1,7 @@
 const express = require('express');
 const morgan = require('morgan');
 const config = require('./config');
-const { discoverLenses } = require('./services/lensService');
+const { discoverLenses } = require('./utils/lensValidator');
 const lensesRouter = require('./routes/lenses');
 const { errorHandler, notFound } = require('./middleware/errorHandler');
 
@@ -22,9 +22,7 @@ async function createServer() {
   // Middleware to load lenses on each request (live reload)
   app.use(async (req, res, next) => {
     try {
-      const { lenses, validationErrors } = await discoverLenses(app.locals.lensesFolder);
-      app.locals.lenses = lenses;
-      app.locals.validationErrors = validationErrors;
+      app.locals.lenses = await discoverLenses(app.locals.lensesFolder);
       next();
     } catch (error) {
       console.error('Error loading lenses:', error);
