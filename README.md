@@ -61,9 +61,7 @@ Returns a list of all available lens IDs.
 
 Response:
 ```json
-{
-  "lenses": ["pregnancy-lens", "drug-interaction-lens"]
-}
+["pregnancy-lens", "drug-interaction-lens"]
 ```
 
 ### GET /lenses/{name}
@@ -103,23 +101,3 @@ Valid lenses must:
 4. Include a `name` field (used as the lens ID)
 5. Include a `content` array with base64-encoded data
 
-## Project Structure
-
-```
-├── src/
-│   ├── index.js              # Application entry point
-│   ├── config.js             # Configuration management
-│   ├── server.js             # Express server setup
-│   ├── services/
-│   │   └── lensService.js    # Lens discovery and validation
-│   ├── routes/
-│   │   └── lenses.js         # API endpoint handlers
-│   └── middleware/
-│       └── errorHandler.js   # Error handling middleware
-├── lenses/                   # Sample lens files
-├── Dockerfile               # Docker configuration
-├── .dockerignore             # Files to exclude from Docker image
-├── .env.example              # Example environment configuration
-├── package.json             # Node.js dependencies
-└── README.md                # This file
-```
