@@ -126,7 +126,10 @@ function findEnhanceFiles(dir) {
       } else if (path.extname(file) === '.js') {
         try {
           const content = fs.readFileSync(filePath, 'utf8');
-          if (content.includes('function enhance') || content.includes('const enhance') || content.includes('export.*enhance')) {
+          if (content.includes('function\s+enhance') 
+            || content.includes('const\s+enhance') 
+            || content.includes('export.*enhance')
+            || content.includes('let\s+enhance\s+=.*()')) {
             enhanceFiles[path.dirname(filePath)] = filePath;
           }
         } catch (e) {
@@ -199,6 +202,7 @@ async function discoverLenses(lensFilePath) {
         const validation = validateFHIRLens(jsonData);
 
         if (validation.isValid) {
+          console.log(`Valid lens found: ${jsonData.id} in file ${filePath}`);
           // Lens is valid
           validLenses.push({
             id: jsonData.id,
@@ -217,6 +221,7 @@ async function discoverLenses(lensFilePath) {
           console.debug(`Lens ${jsonData.name} is missing base64 content. Looking for enhance JS in ${fileDir}`);
 
           if (enhanceFile) {
+            console.log(`Enhancing lens ${jsonData.id} with JS file ${enhanceFile}`);
             try {
               const base64Content = jsToBase64(enhanceFile);
               jsonData.content = jsonData.content || [];
@@ -243,6 +248,8 @@ async function discoverLenses(lensFilePath) {
               console.debug(`Failed to enhance lens with JS: ${jsError.message}`);
             }
           }
+        } else {
+          console.debug(`Invalid lens in file ${filePath}: ${validation.errors.join('; ')}`);
         }
       } catch (error) {
         console.debug(`Error processing file ${filePath}: ${error.message}`);
