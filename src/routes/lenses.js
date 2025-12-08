@@ -28,7 +28,7 @@ router.get('/:name', (req, res, next) => {
     const { name } = req.params;
 
     // Get the lens from the loaded lenses
-    const lens = getLensByName(req.app.locals.lenses, name);
+    const lens = getLensByName(req.app.locals.lenses, name).lens;
 
     if (!lens) {
       const error = new Error(`Lens '${name}' not found`);
